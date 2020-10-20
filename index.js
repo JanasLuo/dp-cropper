@@ -7,11 +7,11 @@ const puppeteer = require('puppeteer');
     // Adjustments particular to this page to ensure we hit desktop breakpoint.
     page.setViewport({width: 1920, height: 1080, deviceScaleFactor: 1});
 
-    await page.goto('http://123.126.105.6:9777/api/custom_sso/acs?domain=haizhi&user_info={%22username%22:%22admin%22}&token=8b18585b1bcf125c333a9622143055a4&RelayState=embed/dashboard.html?dashId=dsh_fc8627370c99a1ba1b1f1b9e062b6027%26theme%3Ddark', {waitUntil: 'networkidle2'});
-
+    await page.goto('http://123.126.105.6:9777/api/custom_sso/acs?domain=haizhi&user_info={%22username%22:%22admin%22}&token=8b18585b1bcf125c333a9622143055a4&RelayState=embed/dashboard.html?dashId=dsh_fc8627370c99a1ba1b1f1b9e062b6027%26theme%3Ddark&chartId=ct_fc3c0f9b2da5b5d1c91eeaf9b2907a92', {waitUntil: 'networkidle2'});
+   
     //wait for element ready
-    await page.waitForSelector('[data-chart-id]');
-
+    await page.waitForSelector('[data-chart-id="ct_fc3c0f9b2da5b5d1c91eeaf9b2907a92"]');
+    // await page.waitFor(1000);
     /**
      * Takes a screenshot of a DOM element on the page, with optional padding.
      *
@@ -49,8 +49,9 @@ const puppeteer = require('puppeteer');
     }
 
     await screenshotDOMElement({
-        path: 'element.png',
-        selector: '[data-chart-id="ct_798324ee527cfffcd241d663b1efd091"]',
+        path: 'public/element.png',
+        // selector: '[data-chart-id="ct_798324ee527cfffcd241d663b1efd091"]',
+        selector: '[data-chart-id="ct_fc3c0f9b2da5b5d1c91eeaf9b2907a92"]',
         //selector: 'svg',
         padding: 0
     });
